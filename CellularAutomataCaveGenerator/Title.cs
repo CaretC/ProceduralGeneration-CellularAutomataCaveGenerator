@@ -6,14 +6,15 @@ namespace CellularAutomataCaveGenerator
 {
     class Title
     {
-        public void PrintTitle()
+        private void printTitle()
         {
+            // ======= Private Methods =======
             // Title ASCII art for the application.
             string titleArt = @"
    
-    ▄████▄   ▄▄▄    ██▒   █▓▓█████      ▄████ ▓█████  ███▄    █ ▓█████  ██▀███   ▄▄▄     ▄▄▄█████▓ ▒█████   ██▀███  
-   ▒██▀ ▀█  ▒████▄ ▓██░   █▒▓█   ▀     ██▒ ▀█▒▓█   ▀  ██ ▀█   █ ▓█   ▀ ▓██ ▒ ██▒▒████▄   ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒
-   ▒▓█    ▄ ▒██  ▀█▄▓██  █▒░▒███      ▒██░▄▄▄░▒███   ▓██  ▀█ ██▒▒███   ▓██ ░▄█ ▒▒██  ▀█▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒
+    ▄████▄   ▄▄▄    ██▒   ████████      ▄████ ██████  ███▄    █ ██████  ██▀███   ▄▄▄     ████████▓ ▒█████   ██▀███  
+   ▒██▀ ▀█  ▒████▄ ▓██░   ██▓█   ▀     ██▒ ▀█▒██   ▀  ██ ▀█   █ ██   ▀ ▓██ ▒ ██▒▒████▄   ▓  ██▒ ▓▒▒██▒  ██▒▓██ ▒ ██▒
+   ▒▓█    ▄ ▒██  ▀█▄▓██  █▒░▒███      ▒██░▄▄▄░████   ▓██  ▀█ ██▒████   ▓██ ░▄█ ▒▒██  ▀█▄ ▒ ▓██░ ▒░▒██░  ██▒▓██ ░▄█ ▒
    ▒▓▓▄ ▄██▒░██▄▄▄▄██▒██ █░░▒▓█  ▄    ░▓█  ██▓▒▓█  ▄ ▓██▒  ▐▌██▒▒▓█  ▄ ▒██▀▀█▄  ░██▄▄▄▄██░ ▓██▓ ░ ▒██   ██░▒██▀▀█▄  
    ▒ ▓███▀ ░ ▓█   ▓██▒▒▀█░  ░▒████▒   ░▒▓███▀▒░▒████▒▒██░   ▓██░░▒████▒░██▓ ▒██▒ ▓█   ▓██▒ ▒██▒ ░ ░ ████▓▒░░██▓ ▒██▒
    ░ ░▒ ▒  ░ ▒▒   ▓▒█░░ ▐░  ░░ ▒░ ░    ░▒   ▒ ░░ ▒░ ░░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒▓ ░▒▓░ ▒▒   ▓▒█░ ▒ ░░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░
@@ -45,13 +46,40 @@ namespace CellularAutomataCaveGenerator
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        public void PrintWelcomeMessage()
+        private void printWelcomeMessage()
         {
-            Console.WriteLine("Hello, let's generate a cave.");
-            Console.WriteLine("Press any key to start...");
+            Console.SetCursorPosition(3, 13);
+            Console.Write("Welcome to the ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Cellular Automata Cave Generator ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("this console application generates random 'Cave Like' maps.");
+
+            Console.SetCursorPosition(3, 15);
+            Console.Write("To produce a map press the ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("ENTER ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("key. Each time ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("ENTER ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("is press a new map will be generated.");
+
+            Console.SetCursorPosition(3, 17);
+            Console.Write("Press ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("ENTER ");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.Write("to generate the first map...");
         }
 
-
+        // ======= Public Methods =======
+        public void PrintWelcomeScreen()
+        {
+            printTitle();
+            printWelcomeMessage();
+        }
 
         
 

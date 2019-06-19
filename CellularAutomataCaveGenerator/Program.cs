@@ -15,8 +15,7 @@ namespace CellularAutomataCaveGenerator
             RandomCave cave = new RandomCave();
 
             // Print Welcome Screen
-            title.PrintTitle();
-            title.PrintWelcomeMessage();            
+            title.PrintWelcomeScreen();         
             Console.ReadLine();
 
             // Produce a new Cave Map evey time the enter key is pressed.
