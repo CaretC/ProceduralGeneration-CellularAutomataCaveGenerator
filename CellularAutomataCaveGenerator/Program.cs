@@ -13,6 +13,7 @@ namespace CellularAutomataCaveGenerator
             Title title = new Title();
             Random randomNumber = new Random();
             RandomCave cave = new RandomCave();
+            cave.DebugEnabled = true;
 
             // Print Welcome Screen
             title.PrintWelcomeScreen();         

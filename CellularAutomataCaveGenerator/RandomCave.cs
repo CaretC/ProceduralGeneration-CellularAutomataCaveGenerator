@@ -8,10 +8,13 @@ namespace CellularAutomataCaveGenerator
     {
         // ======= Properties =======
         // Toggle Debug output. Default is false.
-        public bool DebugEnabled { get; set; } = false;
+        public bool DebugEnabled { get; set; } = true;
+
+        // Toggle perimeter walls. Default is false.
+        public bool PerimeterWallsEnabled { get; set; } = false;
 
         // Probibility that cell will initially be spawned 'alive'. Default is 29% (29). 
-        private int chanceToStartAlive = 27;
+        private int chanceToStartAlive = 29;
         public int ChanceToStartAlive
         {
             get { return chanceToStartAlive; }
@@ -52,7 +55,7 @@ namespace CellularAutomataCaveGenerator
                 Debug.WriteLine(String.Format("DEBUG: Console Size -- {0} x {1}", Console.WindowWidth, Console.WindowHeight));
             }
 
-            // Assisgn a blank 2D bool array the size of the console window. [x,y]
+            // Assign a blank 2D bool array the size of the console window. [x,y]
             bool[,] startingMap = new bool[Console.WindowWidth,Console.WindowHeight];
             // Create a random number generator.
             Random randomNumber = new Random();
@@ -77,36 +80,44 @@ namespace CellularAutomataCaveGenerator
         // Follow the rules for the cellular automata for one step
         private bool[,] simulationStep(bool[,] oldMap)
         {
+            // Set newMap array size to match oldMap
             bool[,] newMap = new bool[oldMap.GetLength(0), oldMap.GetLength(1)];
 
+            // Loop through every cell in oldMap applying rules and place result for this cell in newMap array
             for (int x = 0; x < oldMap.GetLength(0); x++)
             {
                 for (int y = 0; y < oldMap.GetLength(1); y++)
                 {
                     int aliveNeighbours = countAliveNeighbours(oldMap, x, y);
 
+                    // If cell is Alive
                     if (oldMap[x,y])
                     {
                         if ( aliveNeighbours >= DeathLimit)
                         {
+                            // Kill Cell
                             newMap[x, y] = false;
                         }
 
                         else
                         {
+                            // Cell Lives
                             newMap[x, y] = true;
                         }
                     }
 
+                    // If cell is Dead
                     else
                     {
                         if(aliveNeighbours >= BirthLimit)
                         {
+                            // Cell is Born
                             newMap[x, y] = true;
                         }
 
                         else
                         {
+                            // Cell remains Dead
                             newMap[x, y] = false;
                         }
                     }
@@ -134,8 +145,12 @@ namespace CellularAutomataCaveGenerator
                     }
                     else if(isOutOfMapArea(map, neighbourXPosition, neighbourYPosition))
                     {
-                        // If a cell is out of bounds increment count. When left like this is helps to fill in map edges.
-                        count++;
+                        // If PerimeterWallsEnabled == false then the out of bounds cells are included in the 
+                        // count this increases the chance of the cell dying, hence the removal of perimeter walls.
+                        if (!PerimeterWallsEnabled)
+                        {
+                            count++;
+                        }
                     }
                     else if(map[neighbourXPosition, neighbourYPosition])
                     {
@@ -158,7 +173,7 @@ namespace CellularAutomataCaveGenerator
                 isOutOfArea = true;
             }
 
-            //If the position is in bounds return flase.
+            //If the position is in bounds return false.
             else
             {
                 isOutOfArea = false;
@@ -200,7 +215,7 @@ namespace CellularAutomataCaveGenerator
             {
                 Debug.WriteLine(String.Format("DEBUG: Chance To Start Alive -- {0}%.", ChanceToStartAlive));
                 Debug.WriteLine(String.Format("DEBUG: Birth Limit -- {0}.", BirthLimit));
-                Debug.WriteLine(String.Format("DEBUG: Birth Limit -- {0}.", DeathLimit));
+                Debug.WriteLine(String.Format("DEBUG: Death Limit -- {0}.", DeathLimit));
                 Debug.WriteLine(String.Format("DEBUG: Simulation Steps -- {0}.", SimulationSteps));
             }
 

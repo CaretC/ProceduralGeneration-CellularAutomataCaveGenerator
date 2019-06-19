@@ -48,14 +48,14 @@ namespace CellularAutomataCaveGenerator
 
         private void printWelcomeMessage()
         {
-            Console.SetCursorPosition(3, 13);
+            Console.SetCursorPosition(5, 13);
             Console.Write("Welcome to the ");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("Cellular Automata Cave Generator ");
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write("this console application generates random 'Cave Like' maps.");
 
-            Console.SetCursorPosition(3, 15);
+            Console.SetCursorPosition(5, 15);
             Console.Write("To produce a map press the ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("ENTER ");
@@ -66,7 +66,7 @@ namespace CellularAutomataCaveGenerator
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write("is press a new map will be generated.");
 
-            Console.SetCursorPosition(3, 17);
+            Console.SetCursorPosition(5, 17);
             Console.Write("Press ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("ENTER ");
