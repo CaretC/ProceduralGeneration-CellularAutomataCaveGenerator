@@ -391,6 +391,14 @@ Map with a **WallColor** of `ConsoleColor.DarkCyan`:
 
 ![Map Dark Cyan WallColor](images/wallColorDarkCyan.PNG)
 
+## Debug Output
+
+The `RandomCave` Class has the ability to output debug information to aid in troubleshooting, it can also be useful as it displays the values used to generate the random map. This can be particularly helpful when trying to adjust the properties to achieve a certain map type. To enable Debug Output set `DebugEnabled` to `true`.
+
+Below shows the typical Debug Output for map generation:
+
+![Example Debug Output](images/debugOutputExample.PNG)
+
 # `Title` Class
 
 ## Description
@@ -500,3 +508,44 @@ private void printWelcomeMessage()
             Console.Write("to generate the first map...");
         }
 ```
+# `Program` Class
+
+The `Program` Class contains the `Main` Console method. This is the class that uses both `RandomCave` and `Title` Classes to make the small Console application to repeatedly generate new random *Cave-Like* maps. This class will display a welcome screen and then each time the **ENTER** key is pressed it will generate a new random *Cave-Like* map.
+
+The `Main` method is shown below:
+```C#
+static void Main(string[] args)
+        {
+            // Set Console Title.
+            Console.Title = "Cellular Automata Cave Generator";
+
+            // Class Instances.
+            Title title = new Title();
+            Random randomNumber = new Random();
+            RandomCave cave = new RandomCave();
+
+            // Toggle Debug Output.
+            cave.DebugEnabled = true;
+
+            // Print Welcome Screen.
+            title.PrintWelcomeScreen();         
+            Console.ReadLine();
+
+            // Produce a new Cave Map every time the enter key is pressed.
+            // TODO: Implement something more elegant than this infinite loop. A run until Esc key press would be nice.
+            while (true)
+            {
+                int startAliveProbability = randomNumber.Next(20, 35);
+
+                cave.ChanceToStartAlive = startAliveProbability;
+                bool[,] caveMap = cave.GenerateCave();
+                cave.PrintMap(caveMap);
+
+                Console.ReadLine();
+            }
+
+
+        }
+```
+
+To aid in increasing the variety of generated levels at the start of each random map generation the `startAliveProbability` is set to a random value between **20** and **35**, this leads to maps that have a good variety of wall density. The random number is selected by the `randomNumber.Next()` method.

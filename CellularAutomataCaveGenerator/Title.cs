@@ -77,13 +77,9 @@ namespace CellularAutomataCaveGenerator
         // ======= Public Methods =======
         public void PrintWelcomeScreen()
         {
+            Console.Clear();
             printTitle();
             printWelcomeMessage();
         }
-
-        
-
-
-
     }
 }
