@@ -48,7 +48,7 @@ step*. The process for cave generation is shown below;
 When counting the *Alive* neighbors cells within the *Moore Neighborhood* are considered. The *Moore Neighborhood* is the **8** cells immediately surrounding the
 cell in question. The below image shows the *Moore Neighborhood*:
 
-![Moore Neighborhood](images/mooreNeighborhood.PNG)
+![Moore Neighborhood](images/mooreNeighborhood.png)
 
 # `RandomCave` Class
 
@@ -191,7 +191,7 @@ private bool[,] initializeMap()
 
 This method takes in a map and a position and returns a count of the *Alive Neighbors* of the cell at the position `xPosition`, `yPosition`. This checks the *Moore  Neighborhood*, the surrounding 8 cells. As shown by the below illustration:
 
-![Moore Neighborhood](images/mooreNeighborhood.PNG)
+![Moore Neighborhood](images/mooreNeighborhood.png)
 
 The `countAliveNeighbours` method is shown below:
 ```c#
